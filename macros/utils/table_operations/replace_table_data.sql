@@ -9,6 +9,13 @@
     {% do adapter.drop_relation(intermediate_relation) %}
 {% endmacro %}
 
+
+{% macro clickhouse__replace_table_data(relation, rows) %}
+    {% set intermediate_relation = elementary.create_intermediate_relation(relation, rows, temporary=True) %}
+    {% do elementary.run_query(dbt.exchange_tables_atomic(relation, intermediate_relation)) %}
+    {% do adapter.drop_relation(intermediate_relation) %}
+{% endmacro %}
+
 {# Databricks - truncate and insert (non-atomic) #}
 {% macro databricks__replace_table_data(relation, rows) %}
     {% do dbt.truncate_relation(relation) %}
