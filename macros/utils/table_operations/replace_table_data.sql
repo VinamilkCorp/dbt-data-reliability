@@ -12,7 +12,7 @@
 
 {% macro clickhouse__replace_table_data(relation, rows) %}
     {% set intermediate_relation = elementary.create_intermediate_relation(relation, rows, temporary=True) %}
-    {% do elementary.run_query(dbt.exchange_tables_atomic(relation, intermediate_relation)) %}
+    {% do dbt.exchange_tables_atomic(relation, intermediate_relation) %}
     {% do adapter.drop_relation(intermediate_relation) %}
 {% endmacro %}
 
