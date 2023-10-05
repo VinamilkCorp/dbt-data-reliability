@@ -28,7 +28,7 @@
 
 {% macro clickhouse__edr_datediff(first_date, second_date, date_part) %}
     {%- if date_part | lower in ['second', 'minute', 'hour', 'day'] %}
-        timestamp_diff({{ second_date }}, {{ first_date }}, {{ date_part }})
+        timestamp_diff('{{ second_date }}', {{ first_date }}, {{ date_part }})
     {%- elif date_part | lower in ['week', 'month', 'quarter', 'year'] %}
         {% set macro = dbt.datediff or dbt_utils.datediff %}
         {% if not macro %}

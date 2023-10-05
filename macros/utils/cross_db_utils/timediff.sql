@@ -14,5 +14,5 @@
 {% endmacro %}
 
 {% macro clickhouse__timediff(timepart, first_timestamp, second_timestamp) %}
-    timestamp_diff({{ second_timestamp }}, {{ first_date }}, {{ timepart }})
+    timestamp_diff('{{ second_timestamp }}', {{ first_date }}, {{ timepart }})
 {% endmacro %}
