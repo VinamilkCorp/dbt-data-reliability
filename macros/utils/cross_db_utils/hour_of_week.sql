@@ -30,3 +30,7 @@
     0 , 'Sunday'
     ) as {{ elementary.edr_type_string() }}),  cast(HOUR({{ date_expr }}) as {{ elementary.edr_type_string() }}))
 {% endmacro %}
+
+{% macro clickhouse__edr_hour_of_week_expression(date_expr) %}
+    concat(cast(FORMAT_DATE({{ date_expr }}, '%W') as {{ elementary.edr_type_string() }}), cast(toHour({{ date_expr }}) as {{ elementary.edr_type_string() }}))
+{% endmacro %}

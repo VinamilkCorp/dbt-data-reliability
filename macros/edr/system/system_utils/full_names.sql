@@ -47,6 +47,19 @@
 {% endmacro %}
 
 
+{% macro clickhouse__full_name_split(part_name) %}
+    {%- if part_name == 'database_name' -%}
+        {%- set part_index = 0 %}
+    {%- elif part_name == 'schema_name' -%}
+        {%- set part_index = 1 %}
+    {%- elif part_name == 'table_name' -%}
+        {%- set part_index = 2 -%}
+    {%- else -%}
+        {{ return('') }}
+    {%- endif -%}
+    trim(BOTH '"' FROM arrayElement(splitByChar('.',  full_table_name), {{ part_index }})) as {{ part_name }}
+{% endmacro %}
+
 {% macro postgres__full_name_split(part_name) %}
     {%- if part_name == 'database_name' -%}
         {%- set part_index = 1 -%}

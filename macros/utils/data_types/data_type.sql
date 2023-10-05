@@ -19,6 +19,10 @@
     {% do return("BOOL") %}
 {% endmacro %}
 
+{% macro clickhouse__edr_type_bool() %}
+    {% do return("Bool") %}
+{% endmacro %}
+
 
 {%- macro edr_type_string() -%}
     {{ return(adapter.dispatch('edr_type_string', 'elementary')()) }}
@@ -45,6 +49,10 @@
 {% macro bigquery__edr_type_string() %}
     {# Default max string size in Bigquery is 65K #}
     {% do return("string") %}
+{% endmacro %}
+
+{% macro clickhouse__edr_type_string() %}
+    {% do return("String") %}
 {% endmacro %}
 
 {% macro spark__edr_type_string() %}
@@ -127,5 +135,9 @@
 {% endmacro %}
 
 {% macro bigquery__edr_type_date() %}
+    date
+{% endmacro %}
+
+{% macro clickhouse__edr_type_date() %}
     date
 {% endmacro %}

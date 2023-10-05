@@ -12,3 +12,7 @@
 {% macro bigquery__timediff(timepart, first_timestamp, second_timestamp) %}
     timestamp_diff({{ second_timestamp }}, {{ first_timestamp }}, {{ timepart }})
 {% endmacro %}
+
+{% macro clickhouse__timediff(timepart, first_timestamp, second_timestamp) %}
+    timestamp_diff({{ second_timestamp }}, {{ first_date }}, {{ timepart }})
+{% endmacro %}

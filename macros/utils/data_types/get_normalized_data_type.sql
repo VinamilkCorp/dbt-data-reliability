@@ -18,6 +18,9 @@
 {% endmacro %}
 
 
+{% macro clickhouse__get_normalized_data_type(exact_data_type) %}
+   {{return (exact_data_type) }}
+{% endmacro %}
 
 {% macro snowflake__get_normalized_data_type(exact_data_type) %}
 {# understanding Snowflake data type synonyms:

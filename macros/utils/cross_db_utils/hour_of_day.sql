@@ -11,6 +11,10 @@
     EXTRACT(hour from {{ date_expr }})
 {% endmacro %}
 
+{% macro clickhouse__edr_hour_of_day_expression(date_expr) %}
+    toHour({{ date_expr }})
+{% endmacro %}
+
 {% macro postgres__edr_hour_of_day_expression(date_expr) %}
     EXTRACT(hour from {{ date_expr }})
 {% endmacro %}

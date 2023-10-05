@@ -46,3 +46,7 @@
 {% macro spark__edr_current_timestamp_in_utc() %}
     cast(unix_timestamp() as timestamp)
 {% endmacro %}
+
+{% macro clickhouse__edr_current_timestamp_in_utc() %}
+    cast(now() as timestamp)
+{% endmacro %}

@@ -39,6 +39,24 @@
 
 {% endmacro %}
 
+{% macro clickhouse__data_type_list(data_type) %}
+
+    {% set string_list = ['String'] | list %}
+    {% set numeric_list = ['Float32','Float64','Int8','Int16','Int32', 'Int64', 'Int128', 'Int256', 'UInt8', 'UInt16', 'UInt32', 'UInt64', 'UInt128', 'UInt256'] | list %}
+    {% set timestamp_list = ['Date','Date32','DateTime', 'DateTime64'] | list %}
+
+    {%- if data_type == 'string' %}
+        {{ return(string_list) }}
+    {%- elif data_type == 'numeric' %}
+        {{ return(numeric_list) }}
+    {%- elif data_type == 'timestamp' %}
+        {{ return(timestamp_list) }}
+    {%- else %}
+        {{ return([]) }}
+    {%- endif %}
+
+{% endmacro %}
+
 
 {% macro snowflake__data_type_list(data_type) %}
 

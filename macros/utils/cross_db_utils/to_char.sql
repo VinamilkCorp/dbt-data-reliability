@@ -14,3 +14,7 @@
 {% macro spark__edr_to_char(column, format) %}
     date_format({{ column }} {%- if format %}, '{{ format }}'){%- else %}, 'YYYY-MM-DD HH:MI:SS'){%- endif %}
 {% endmacro %}
+
+{% macro clickhouse__edr_to_char(column, format) %}
+    formatDateTime({{ column }}, {%- if format %}, '{{ format }}'){%- else %}, '%F %T'){%- endif %}
+{% endmacro %}

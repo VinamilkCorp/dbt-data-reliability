@@ -11,6 +11,10 @@
     FORMAT_DATE('%A', {{ date_expr }})
 {% endmacro %}
 
+{% macro clickhouse__edr_day_of_week_expression(date_expr) %}
+    formatDateTime({{ date_expr }}, '%W')
+{% endmacro %}
+
 {% macro postgres__edr_day_of_week_expression(date_expr) %}
     to_char({{ date_expr }}, 'Day')
 {% endmacro %}
