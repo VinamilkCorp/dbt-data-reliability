@@ -29,7 +29,7 @@
 
 {% macro clickhouse__edr_timeadd(date_part, number, timestamp_expression) %}
     {%- if date_part | lower in ['second', 'minute', 'hour', 'day', 'week', 'month', 'quarter', 'year'] %}
-       date_add({{ date_part }}, {{ elementary.edr_cast_as_int(number) }}, {{ elementary.edr_cast_as_timestamp(timestamp_expression) }})
+       date_add('{{ date_part }}', {{ elementary.edr_cast_as_int(number) }}, {{ elementary.edr_cast_as_timestamp(timestamp_expression) }})
     {%- else %}
         {{ exceptions.raise_compiler_error("Unsupported date_part in edr_timeadd: ".format(date_part)) }}
     {%- endif %}
