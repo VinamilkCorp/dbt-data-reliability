@@ -19,7 +19,11 @@
 {% endmacro %}
 
 {% macro standard_deviation(column_name) -%}
+    {% if target.type == 'clickhouse' %}
+    stddev_pop(cast({{ column_name }} as {{ elementary.edr_type_float() }}))
+    {% else %}
     stddev(cast({{ column_name }} as {{ elementary.edr_type_float() }}))
+    {% endif %}
 {%- endmacro %}
 
 {% macro variance(column_name) -%}
