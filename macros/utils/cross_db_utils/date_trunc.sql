@@ -17,5 +17,5 @@
 
 
 {% macro clickhouse__edr_date_trunc(date_part, date_expression) %}
-    date_trunc(cast({{ date_expression }} as timestamp), {{ date_part }})
+    date_trunc('{{ date_part }}', cast({{ date_expression }} as timestamp))
 {% endmacro %}
